@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "112554696335",
+    "project_id": "glanny",
+    "storage_bucket": "glanny.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:112554696335:android:07ea3cb42579c4a3589afa",
+        "android_client_info": {
+          "package_name": "com.glantrox.glanny"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "112554696335-h269n6vev1lhhhg0t7d55up8n7nqg197.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSlYYKWen5_Tt0LPf_BGadazwOrtmO7Ww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "112554696335-h269n6vev1lhhhg0t7d55up8n7nqg197.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
