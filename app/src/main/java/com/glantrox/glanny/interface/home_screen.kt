@@ -34,6 +34,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.glantrox.glanny.R
 import com.glantrox.glanny.R.drawable.baseline_camera_alt_24
 import com.glantrox.glanny.R.drawable.baseline_more_vert_24
@@ -49,7 +51,7 @@ import com.glantrox.glanny.theme.AppColors
 @Preview(showBackground = false)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavHostController = rememberNavController()) {
     val tabs = listOf("","CHAT", "STATUS", "CALLS")
     var selectedTabIndex by remember { mutableStateOf(1) }
 
@@ -126,7 +128,6 @@ fun HomeScreen() {
                1 -> ChatPage()
                2 -> StatusPage()
                3 -> CallsPage()
-
            }
 
        }

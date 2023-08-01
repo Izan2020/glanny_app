@@ -33,6 +33,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -42,6 +43,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import com.glantrox.glanny.R
 import com.glantrox.glanny.R.drawable.baseline_arrow_back_24
@@ -57,14 +60,22 @@ import com.glantrox.glanny.theme.AppColors
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
-fun ChatScreen() {
+fun ChatScreen(navController: NavHostController = rememberNavController()) {
 
     val warningMessageTop = "Messages are end-to-end encrypted. No one outside of this chat, not even WhatsApp, can read or listen to them. Click to learn more."
     val listOfMessage : List<Message> = listOf(
-        Message("Halo Apa Kabar", true, "17:52"),
-        Message("Kamu Lagi dimana? udah makan belum", true, "17:52"),
-        Message("belum", false, "17:52"),
-        Message("makan dong", true, "17:52"),
+        Message("p", true, "17:52"),
+        Message("wya rn", true, "17:52"),
+        Message("home", false, "17:52"),
+        Message("wanna hang?", true, "17:52"),
+        Message("sure, where?", false, "17:52"),
+        Message("kemang sabi", false, "17:52"),
+        Message("boleh", true, "17:52"),
+        Message("mau dimana?", false, "17:52"),
+        Message("kemvil aja", true, "17:52"),
+        Message("js lmk when u udah otw", true, "17:52"),
+        Message("sip sip gw mandi dulu", false, "17:52"),
+        Message("okay 😘", true, "17:52"),
         )
     Scaffold(
         topBar = {
@@ -157,13 +168,12 @@ fun ChatScreen() {
           ) {
               itemsIndexed(listOfMessage.reversed()) { index, chats ->
                   if(index == 0 ) {
-                      Spacer(modifier = Modifier.height(63.dp))
+                      Spacer(modifier = Modifier.height(69.dp))
                   }
                   if(chats.ourMessage) {
                       ItemOurMessage(chat = chats)
                   } else {
                       ItemTheirMessage(chat = chats)
-
                   }
                   if(index == listOfMessage.size - 1) {
                       Row(
@@ -174,7 +184,9 @@ fun ChatScreen() {
                           horizontalArrangement = Arrangement.Center
                       ) {
                         Card(
-                            modifier = Modifier.height(72.dp)
+                            modifier = Modifier
+                                .height(72.dp)
+                                .shadow(8.dp)
                         ) {
                             Text( warningMessageTop,
                                 modifier = Modifier.padding(12.dp),

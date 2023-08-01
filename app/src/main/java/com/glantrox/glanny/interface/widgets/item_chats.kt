@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,75 +29,78 @@ import com.glantrox.glanny.theme.AppColors
 @Preview(showBackground = false)
 @Composable
 fun ItemChats(onTap: () -> Unit = {}, ) {
-    return Box(
-        modifier = Modifier.clickable { onTap() }
-    ) {
-        Row(
-            modifier = Modifier
-                .height(80.dp)
-                .fillMaxWidth()
-                .background(AppColors().white)
-                .padding(11.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
+    return Column {
+        Box(
+            modifier = Modifier.clickable { onTap() }
         ) {
             Row(
-                verticalAlignment = Alignment.CenterVertically
+                modifier = Modifier
+                    .height(80.dp)
+                    .fillMaxWidth()
+                    .background(AppColors().white)
+                    .padding(11.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
-                Box(
-                    modifier = Modifier
-                        .height(50.dp)
-                        .width(50.dp)
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    AsyncImage(
+                    Box(
                         modifier = Modifier
-                            .clip(CircleShape)
-                            .background(AppColors().gray),
-                        model = "",
-                        contentDescription = "profilePicture"
-                    )
-                }
-                Spacer(modifier = Modifier.width(12.dp))
-                Column {
-                    Text(
-                        text = "User Name",
-                        style = TextStyle(
-                            fontWeight = FontWeight.Bold
+                            .height(50.dp)
+                            .width(50.dp)
+                    ) {
+                        AsyncImage(
+                            modifier = Modifier
+                                .clip(CircleShape)
+                                .background(AppColors().gray),
+                            model = "",
+                            contentDescription = "profilePicture"
                         )
-                    )
-                    Text(
-                        text = "messages",
-                        style = TextStyle(
-                            color = AppColors().gray
+                    }
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Column {
+                        Text(
+                            text = "User Name",
+                            style = TextStyle(
+                                fontWeight = FontWeight.Bold
+                            )
                         )
-                    )
+                        Text(
+                            text = "messages",
+                            style = TextStyle(
+                                color = AppColors().gray
+                            )
+                        )
+                    }
                 }
-            }
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(text = "0:00")
-                Spacer(modifier = Modifier.height(4.dp))
-                Box(
-                    modifier = Modifier
-                        .height(22.dp)
-                        .width(22.dp)
-                        .background(
-                            color = AppColors().primaryColor,
-                            shape = CircleShape
-                        ),
-                    contentAlignment = Alignment.Center
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(
-                        text = "12",
-                        style = TextStyle(
-                            color = AppColors().white,
-                            fontSize = 10.sp,
-                            fontWeight = FontWeight.Bold
+                    Text(text = "0:00")
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Box(
+                        modifier = Modifier
+                            .height(22.dp)
+                            .width(22.dp)
+                            .background(
+                                color = AppColors().primaryColor,
+                                shape = CircleShape
+                            ),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = "12",
+                            style = TextStyle(
+                                color = AppColors().white,
+                                fontSize = 10.sp,
+                                fontWeight = FontWeight.Bold
+                            )
                         )
-                    )
+                    }
                 }
             }
+            Divider(thickness = 0.6.dp)
         }
     }
 }

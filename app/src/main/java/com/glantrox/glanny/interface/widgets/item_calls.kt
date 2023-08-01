@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,70 +36,73 @@ import com.glantrox.glanny.theme.AppColors
 @Preview
 @Composable
 fun ItemCalls(onTap: () -> Unit = {}) {
-    return Box(
-        modifier = Modifier.clickable { onTap() }
-    ) {
-        Row(
-            modifier = Modifier
-                .height(80.dp)
-                .fillMaxWidth()
-                .background(AppColors().white)
-                .padding(11.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+    return Column {
+        Box(
+            modifier = Modifier.clickable { onTap() }
         ) {
             Row(
-                verticalAlignment = Alignment.CenterVertically
+                modifier = Modifier
+                    .height(80.dp)
+                    .fillMaxWidth()
+                    .background(AppColors().white)
+                    .padding(11.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Box(
-                    modifier = Modifier
-                        .height(50.dp)
-                        .width(50.dp)
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    AsyncImage(
+                    Box(
                         modifier = Modifier
-                            .clip(CircleShape)
-                            .background(AppColors().gray),
-                        model = "",
-                        contentDescription = "profilePicture"
-                    )
-                }
-                Spacer(modifier = Modifier.width(12.dp))
-                Column() {
-                    Text(
-                        text = "User Name",
-                        style = TextStyle(
-                            fontWeight = FontWeight.Bold
-                        )
-                    )
-                    Spacer(modifier = Modifier.height(5.dp))
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
+                            .height(50.dp)
+                            .width(50.dp)
                     ) {
-                        Icon(
-                            modifier = Modifier.size(16.dp),
-                            painter = painterResource(baseline_arrow_outward_24),
-                            contentDescription = "",
-                        )
-                        Spacer(modifier = Modifier.width(5.dp))
-                        Text(
-                            text = "December 6, 12:36",
-                            style = TextStyle(
-                                color = AppColors().gray
-                            )
+                        AsyncImage(
+                            modifier = Modifier
+                                .clip(CircleShape)
+                                .background(AppColors().gray),
+                            model = "",
+                            contentDescription = "profilePicture"
                         )
                     }
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Column() {
+                        Text(
+                            text = "User Name",
+                            style = TextStyle(
+                                fontWeight = FontWeight.Bold
+                            )
+                        )
+                        Spacer(modifier = Modifier.height(5.dp))
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                modifier = Modifier.size(16.dp),
+                                painter = painterResource(baseline_arrow_outward_24),
+                                contentDescription = "",
+                            )
+                            Spacer(modifier = Modifier.width(5.dp))
+                            Text(
+                                text = "December 6, 12:36",
+                                style = TextStyle(
+                                    color = AppColors().gray
+                                )
+                            )
+                        }
+                    }
+                }
+                Column(
+                    modifier = Modifier.fillMaxHeight()
+                ) {
+                    Icon(
+                        modifier = Modifier.size(23.dp),
+                        painter = painterResource(ic_call_answer),
+                        contentDescription = ""
+                    )
                 }
             }
-            Column(
-                modifier = Modifier.fillMaxHeight()
-            ) {
-                Icon(
-                    modifier = Modifier.size(23.dp),
-                    painter = painterResource(ic_call_answer),
-                    contentDescription = ""
-                )
-            }
+            Divider(thickness = 0.6.dp)
         }
     }
 }

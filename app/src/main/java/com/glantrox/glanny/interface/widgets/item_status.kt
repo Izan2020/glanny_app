@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -29,43 +30,46 @@ fun ItemStatus(onTap: () -> Unit = {}) {
     return Box(
         modifier = Modifier.clickable { onTap() }
     ) {
-        Row(
-            modifier = Modifier
-                .height(80.dp)
-                .fillMaxWidth()
-                .background(AppColors().white)
-                .padding(11.dp),
-            verticalAlignment = Alignment.CenterVertically
-
-        ) {
-            Box(
+        Column {
+            Row(
                 modifier = Modifier
-                    .height(50.dp)
-                    .width(50.dp)
+                    .height(80.dp)
+                    .fillMaxWidth()
+                    .background(AppColors().white)
+                    .padding(11.dp),
+                verticalAlignment = Alignment.CenterVertically
+
             ) {
-                AsyncImage(
+                Box(
                     modifier = Modifier
-                        .clip(CircleShape)
-                        .background(AppColors().gray),
-                    model = "",
-                    contentDescription = "profilePicture"
-                )
-            }
-            Spacer(modifier = Modifier.width(12.dp))
-            Column {
-                Text(
-                    text = "User Name",
-                    style = TextStyle(
-                        fontWeight = FontWeight.Bold
+                        .height(50.dp)
+                        .width(50.dp)
+                ) {
+                    AsyncImage(
+                        modifier = Modifier
+                            .clip(CircleShape)
+                            .background(AppColors().gray),
+                        model = "",
+                        contentDescription = "profilePicture"
                     )
-                )
-                Text(
-                    text = "12 hours ago",
-                    style = TextStyle(
-                        color = AppColors().gray
+                }
+                Spacer(modifier = Modifier.width(12.dp))
+                Column {
+                    Text(
+                        text = "User Name",
+                        style = TextStyle(
+                            fontWeight = FontWeight.Bold
+                        )
                     )
-                )
+                    Text(
+                        text = "12 hours ago",
+                        style = TextStyle(
+                            color = AppColors().gray
+                        )
+                    )
+                }
             }
+            Divider(thickness = 0.6.dp)
         }
     }
 }

@@ -15,6 +15,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -26,7 +28,7 @@ import com.glantrox.glanny.theme.AppColors
 @Composable
 fun ItemTheirMessage(chat: Message) {
     return Row(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth().clipToBounds(),
         horizontalArrangement = Arrangement.Start
     ) {
         Spacer(modifier = Modifier.width(5.dp))
@@ -34,6 +36,7 @@ fun ItemTheirMessage(chat: Message) {
             modifier = Modifier
                 .padding(2.dp)
                 .widthIn(0.dp, 260.dp)
+                .shadow(5.dp)
                 ,
             colors = CardDefaults.cardColors(AppColors().white),
             shape = RoundedCornerShape(0.dp, 15.dp, 15.dp, 15.dp)
@@ -65,7 +68,9 @@ fun ItemOurMessage(chat: Message) {
         Card(
             modifier = Modifier
                 .padding(2.dp)
-                .widthIn(0.dp, 256.dp),
+                .widthIn(0.dp, 256.dp)
+                .shadow(5.dp)
+            ,
             colors = CardDefaults.cardColors(AppColors().secondaryColorz),
             shape = RoundedCornerShape(15.dp, 0.dp, 15.dp, 15.dp)
         ) {
