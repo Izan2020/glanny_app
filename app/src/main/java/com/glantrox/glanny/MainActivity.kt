@@ -13,6 +13,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _authViewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+        _authViewModel.init()
         setContent {
             GlannyTheme {
               AppNavigator().NavigationDelegate(

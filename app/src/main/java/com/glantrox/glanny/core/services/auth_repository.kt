@@ -20,50 +20,49 @@ class AuthRepository {
     private val firebaseDb = FirebaseFirestore.getInstance().collection("users")
 
     // O=========================================================================>
+    // ? Authenticate Initialization
+    // <=========================================================================O
+
+      fun isLoggedIn(): Boolean {
+        val response = firebaseAuth.currentUser?.email
+        return response != null
+    }
+
+    // O=========================================================================>
     // ? Register ( Email and Password )
     // <=========================================================================O
 
-     suspend fun registerUserWithEmailAndPassword(user: User): RegistrationResponse {
-      try {
+     suspend fun registerUserWithEmailAndPassword(user: User){
          val registerTask = firebaseAuth.createUserWithEmailAndPassword(user.email, user.password)
-          val registerResult: AuthResult = registerTask.await()
-          if(registerResult.user != null) {
-              val userCredential = hashMapOf(
-                  "userId" to registerResult.user!!.uid,
-                  "name" to user.username,
-                  "email" to registerResult.user!!.email,
-                  "profilePicture" to "",
-                  "aboutMe" to "",
-                  "createdAt" to FieldValue.serverTimestamp(),
-              )
-              val dbTask = firebaseDb.document(registerResult.user!!.uid).set(userCredential).await()
+         val registerResult: AuthResult = registerTask.await()
+         if(registerResult.user != null) {
+             val userCredential = hashMapOf(
+                 "userId" to registerResult.user!!.uid,
+                 "name" to user.username,
+                 "email" to registerResult.user!!.email,
+                 "profilePicture" to "",
+                 "aboutMe" to "",
+                 "createdAt" to FieldValue.serverTimestamp(),
+             )
+             firebaseDb.document(registerResult.user!!.uid).set(userCredential).await()
+         }
 
-              return  RegistrationResponse.Success
-          } else {
-              return  RegistrationResponse.Error("Terjadi Kesalahan Server")
-          }
-
-     } catch (e: FirebaseAuthException) {
-          Log.d("firebaseAuthReg", "Exception ${e.localizedMessage}")
-         throw Exception(e.message)
      }
-    }
 
     // O=========================================================================>
     // ? Sign In ( Email and Password )
     // <=========================================================================O
 
-    suspend fun signInUserWithEmailAndPassword(user: User): LoginResponse {
-        try {
-            val loginTask = firebaseAuth.signInWithEmailAndPassword(user.email, user.password)
-            val loginResult: AuthResult = loginTask.await()
-            if(loginResult.user != null) {
-                return  LoginResponse.Success
-            } else {
-                return  LoginResponse.Error("Check your Connection")
-            }
-        } catch (e: FirebaseAuthException) {
-            throw Exception(e.message)
+    suspend fun signInUserWithEmailAndPassword(user: User) {
+        Log.d("errorLogin1", "Loading...")
+        val loginTask = firebaseAuth.signInWithEmailAndPassword(user.email, user.password)
+        val loginResult: AuthResult = loginTask.await()
+        if(loginResult.user != null) {
+            Log.d("errorLogin1", "Success")
+            LoginResponse.Success
+        } else {
+            Log.d("errorLogin1", "Error 1")
+            LoginResponse.Error("Check your Connection")
         }
     }
 
